@@ -19,4 +19,6 @@ Récupérez les 3 fichiers intéressants : Liste_Atrouver.xlsx, dico_animaux.txt
 Le premier contient 10 mots de passe, chiffré en MD5, l'autre des noms d'animaux 
 
 
-### Votre objectif : trouvez le plus de mots de passe. 
+### Votre objectif : trouvez le plus de mots de passe.
+
+## L'éxecution de ce script inscrit les mot de passe dans le fichier resultat.txt.
