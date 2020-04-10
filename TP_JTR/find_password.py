@@ -22,8 +22,6 @@ resultats = []
 
 # Fichier contenant la liste des résultats
 file_resultats = open("resultats.txt", "w+", encoding="utf-8")
-
-
 # ---------------- #
 
 # Retourne (dans une liste) le mot de passe de chaque ligne du tableau CSV
@@ -104,8 +102,10 @@ for nom in liste_noms:
 
 for prenom in liste_prenoms:
     prenom = prenom.lower()
-    for i in range(0, 10000):
+    for i in range(0, 9999):
         clear_password2 = prenom + str(i)
+        if i <= 10:
+            clear_password2 = prenom + "0" + str(i)
         # print(prenom + str(i))
         for password in liste_passwords:
             print(add_clear_password(clear_password2, int(liste_passwords.index(password)))) if check_password(
