@@ -21,4 +21,4 @@ Le premier contient 10 mots de passe, chiffré en MD5, l'autre des noms d'animau
 
 ### Votre objectif : trouvez le plus de mots de passe.
 
-## L'éxecution de ce script inscrit les mot de passe dans le fichier resultat.txt.
+## L'éxecution de ce script inscrit les mots de passe dans le fichier resultat.txt.
