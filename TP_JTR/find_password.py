@@ -1,7 +1,7 @@
 import hashlib
 import re
 
-# --------------- #
+# ----- Les variables principales ----- #
 # Contient la liste des animaux
 liste_animaux = []
 
@@ -22,7 +22,7 @@ resultats = []
 
 # Fichier contenant la liste des résultats
 file_resultats = open("resultats.txt", "w+", encoding="utf-8")
-# ---------------- #
+# ------------------------------------- #
 
 # Retourne (dans une liste) le mot de passe de chaque ligne du tableau CSV
 def get_only_password(line):
@@ -44,15 +44,16 @@ def get_only_surnames(line):
     liste_test = [pos for pos, char in enumerate(line) if char == ";"]
     return line[liste_test[0]:liste_test[1]].replace(";", "")
 
-
+# Affiche le résultat
+# et écrit ce dernier dans le fichier resultat.txt
 def add_clear_password(clear_password, index):
     print(liste_noms[index] + " " + liste_prenoms[index] + ", Mot de passe : " + clear_password)
     file_resultats.write(liste_noms[index] + " " + liste_prenoms[index] + ", Mot de passe : " + clear_password + "\n")
 
 
-def replace_vowels_with_numbers(string):
-    list_try = [0, 0, 0, 0, 0]
-    liste_voyelle = ['a', 'e', 'i', 'o', 'u', 'y']
+# def replace_vowels_with_numbers(string):
+#     list_try = [0, 0, 0, 0, 0]
+#     liste_voyelle = ['a', 'e', 'i', 'o', 'u', 'y']
 
 
 # Lis le dictionnaire des animaux
@@ -77,9 +78,20 @@ for line in passwords:
 # print(liste_prenoms)
 # print(liste_passwords)
 
+
+# En bas se trouve des boucles for qui itère dans les listes ci-dessus.
+# Des opérations sont effectués : Les "clear_password" sont des combinaisons afin de trouver les mots de passes
+# Si le mot de passe correspond (fonction check_password()) alors il est affiché selon la personne qui correspond
+# Il est aussi dans le fichier resultats.txt
+
+
 for animal in liste_animaux:
+    # clear_password1 = 'laminaanimal' pour chaque animaux
     clear_password1 = animal[::-1] + animal
+    # clear_password2 = un animal de la liste
     clear_password2 = animal
+    # clear_password3 = 'Animal' avec la première lettre en majuscule
+    clear_password3 = animal.capitalize()
     # print(clear_password2)
     for password in liste_passwords:
         # print(password)
@@ -87,26 +99,24 @@ for animal in liste_animaux:
             clear_password1, password) else None
         print(add_clear_password(clear_password2, int(liste_passwords.index(password)))) if check_password(
             clear_password2, password) else None
+        print(add_clear_password(clear_password3, int(liste_passwords.index(password)))) if check_password(
+            clear_password3, password) else None
 
 for nom in liste_noms:
     prenom = liste_prenoms[liste_noms.index(nom)].lower()
+    # clear_password1 = 'monerp'
     clear_password1 = prenom[::-1]
-
-    # print(clear_password1)
-    # print(clear_password1)
     for password in liste_passwords:
         print(add_clear_password(clear_password1, int(liste_passwords.index(password)))) if check_password(
             clear_password1, password) else None
 
-        # print(password)
-
 for prenom in liste_prenoms:
     prenom = prenom.lower()
-    for i in range(0, 9999):
-        clear_password2 = prenom + str(i)
+    for i in range(0, 10000):
+        # clear_password1 = [prenom01, prenom02 ... prenom9999]
+        clear_password1 = prenom + str(i)
         if i <= 10:
-            clear_password2 = prenom + "0" + str(i)
-        # print(prenom + str(i))
+            clear_password1 = prenom + "0" + str(i)
         for password in liste_passwords:
-            print(add_clear_password(clear_password2, int(liste_passwords.index(password)))) if check_password(
-                clear_password2, password) else None
+            print(add_clear_password(clear_password1, int(liste_passwords.index(password)))) if check_password(
+                clear_password1, password) else None
